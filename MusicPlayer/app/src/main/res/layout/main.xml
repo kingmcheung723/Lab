@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Song Title"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:id="@+id/linearLayout"
+        android:background="@android:color/darker_gray">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/prev"
+            android:src="@drawable/img_btn_prev"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_toRightOf="@+id/rewind"
+            android:layout_toEndOf="@+id/rewind" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rewind"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/img_btn_rewind"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_toRightOf="@+id/play"
+            android:layout_toEndOf="@+id/play" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/play"
+            android:src="@drawable/img_btn_play"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/forward"
+            android:src="@drawable/img_btn_forward"
+            android:layout_above="@+id/linearLayout"
+            android:layout_toLeftOf="@+id/play"
+            android:layout_toStartOf="@+id/play" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/next"
+            android:src="@drawable/img_btn_next"
+            android:layout_above="@+id/linearLayout"
+            android:layout_toLeftOf="@+id/forward"
+            android:layout_toStartOf="@+id/forward" />
+
+    </LinearLayout>
+
+</RelativeLayout>
