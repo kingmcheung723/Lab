@@ -21,4 +21,4 @@
         android:id="@android:id/progress"
         android:drawable="@drawable/seekbar_progress_bg"
     />
-</layer-list><!-- From: file:/E:/Course/COMP%204521/COMP4521%202015/labs/Week4/MusicPlayer-2/MusicPlayer/app/src/main/res/drawable/seekbar_progress.xml -->
+</layer-list><!-- From: file:/D:/Work/github/Lab/Lab3/MusicPlayer/app/src/main/res/drawable/seekbar_progress.xml -->

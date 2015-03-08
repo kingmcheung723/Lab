@@ -3,4 +3,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
 </menu>
-<!-- From: file:/E:/Course/COMP%204521/COMP4521%202015/labs/Week4/MusicPlayer-2/MusicPlayer/app/src/main/res/menu/menu_playlist.xml -->
+<!-- From: file:/D:/Work/github/Lab/Lab3/MusicPlayer/app/src/main/res/menu/menu_playlist.xml -->

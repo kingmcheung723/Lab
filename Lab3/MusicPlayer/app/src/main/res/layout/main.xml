@@ -61,4 +61,40 @@
         android:text="Song Title"
         android:textSize="18sp" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/songImage"
+        android:layout_below="@+id/songTitle"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/note_blue" />
+
+    <LinearLayout
+        android:id="@+id/timerDisplay"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/songImage"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="New Text"
+            android:textStyle="bold"
+            android:id="@+id/songCurrentDurationLabel" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:text="New Text"
+            android:textStyle="bold"
+            android:id="@+id/songRemainingDurationLabel"/>
+    </LinearLayout>
+
 </RelativeLayout>
