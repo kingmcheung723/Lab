@@ -1,8 +1,5 @@
 package hkust.comp4521.audio;
 
-import hkust.comp4521.audio.player.MusicPlayer;
-import hkust.comp4521.audio.player.PlayerState;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,18 +7,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public class MusicActivity extends Activity implements OnClickListener, Observer {
+import hkust.comp4521.audio.player.MusicPlayer;
+import hkust.comp4521.audio.player.PlayerState;
+
+public class MusicActivity extends Activity implements OnClickListener, SeekBar.OnSeekBarChangeListener, Observer {
 
 
     private static final String TAG = "MusicPlayer";
@@ -29,9 +28,11 @@ public class MusicActivity extends Activity implements OnClickListener, Observer
     public static Handler handler;
     private TextView songTitleText;
     private static int songIndex = 0;
+    private SeekBar songProgressBar;
+    private TextView complTime, remTime;
 
     /*
-	 * Class Name: MusicPlayer
+     * Class Name: MusicPlayer
 	 * 
 	 *    This class implements support for playing a music file using the MediaPlayer class in Android.
 	 *    It supports the following methods:
@@ -78,7 +79,6 @@ public class MusicActivity extends Activity implements OnClickListener, Observer
         //	get	a	reference	to	the	song	title	TextView	in	the	UI
         songTitleText = (TextView) findViewById(R.id.songTitle);
 
-
         // The music player is implemented as a Java Singleton class so that only one
         // instance of the player is present within the application. The getMusicPlayer()
         // method returns the reference to the instance of the music player class
@@ -89,7 +89,18 @@ public class MusicActivity extends Activity implements OnClickListener, Observer
         player.setContext(this);
         player.addObserver(this);
 
-        startSong(songIndex);
+        // get reference to the SeekBar, completion time and remaining time.
+        songProgressBar = (SeekBar) findViewById(R.id.songProgressBar);
+        //set max to 100, means that complete song has been played
+        songProgressBar.setMax(100);
+        //initializing SeekBarChangeListener
+        songProgressBar.setOnSeekBarChangeListener(this);
+        complTime = (TextView) findViewById(R.id.songCurrentDurationLabel);
+        remTime = (TextView) findViewById(R.id.songRemainingDurationLabel);
+
+        // shows the current progress of the player songProgressBar.setProgress(player.progress());
+        complTime.setText(player.completedTime());
+        remTime.setText("-" + player.remainingTime());
 
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
@@ -97,13 +108,46 @@ public class MusicActivity extends Activity implements OnClickListener, Observer
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
+        handler = new Handler();
+
+        startSong(songIndex);
+
+        if(player.isPlaying()){
+            updateSongProgress();
+        }
     }
 
-    private	void	startSong(int	index){
-        final	String[]	songFile	=	getResources().getStringArray(R.array.filename);
+    public void updateSongProgress() {
+        handler.postDelayed(songProgressUpdate, 500);
+        playerButton.setImageResource(R.drawable.img_btn_pause);
+    }
+
+    private Runnable songProgressUpdate = new Runnable() {
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            // initialize the Progress bar and the status of TextView
+            // We want to modify the progress bar, but w can do it only
+            // from the UI thread, To do this, we make use of the handler
+            songProgressBar.setProgress(player.progress());
+            complTime.setText(player.completedTime());
+            remTime.setText("-" + player.remainingTime());
+            // schedule another update for every 500 msec later
+            handler.postDelayed(songProgressUpdate, 500);
+        }
+    };
+
+    public void cancelUpdateSongProgress() {
+        // cancel all callbacks that are already in the handler queue
+        handler.removeCallbacks(songProgressUpdate);
+        playerButton.setImageResource(R.drawable.img_btn_play);
+    }
+
+    private void startSong(int index) {
+        final String[] songFile = getResources().getStringArray(R.array.filename);
         final String[] songList = getResources().getStringArray(R.array.Songs);
 
-        player.start(getResources().getIdentifier(songFile[index],	"raw",	getPackageName()), songList[index]);
+        player.start(getResources().getIdentifier(songFile[index], "raw", getPackageName()), songList[index]);
 
     }
 
@@ -232,32 +276,56 @@ public class MusicActivity extends Activity implements OnClickListener, Observer
                 Log.i(TAG, "Activity: Player State Changed to Ready");
                 songTitleText.setText(player.getSongTitle());
                 playerButton.setImageResource(R.drawable.img_btn_play);
+                songProgressBar.setProgress(player.progress());
+                complTime.setText(player.completedTime());
+                remTime.setText("-" + player.remainingTime());
                 break;
 
             case Paused:
                 Log.i(TAG, "Activity: Player State Changed to Paused");
                 playerButton.setImageResource(R.drawable.img_btn_play);
+                songProgressBar.setProgress(player.progress());
+                complTime.setText(player.completedTime());
+                remTime.setText("-" + player.remainingTime());
                 break;
 
             case Stopped:
                 Log.i(TAG, "Activity: Player State Changed to Stopped");
-                playerButton.setImageResource(R.drawable.img_btn_play);
+                cancelUpdateSongProgress();
                 break;
 
             case Playing:
                 Log.i(TAG, "Activity: Player State Changed to Playing");
-                playerButton.setImageResource(R.drawable.img_btn_pause);
+                updateSongProgress();
                 break;
 
             case Reset:
                 Log.i(TAG, "Activity: Player State Changed to Reset");
-                playerButton.setImageResource(R.drawable.img_btn_play);
+                cancelUpdateSongProgress();
                 break;
 
             default:
                 break;
 
         }
+
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        cancelUpdateSongProgress();
+        if (fromUser && player.isPlaying())
+            player.reposition(progress);
+        updateSongProgress();
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
 }

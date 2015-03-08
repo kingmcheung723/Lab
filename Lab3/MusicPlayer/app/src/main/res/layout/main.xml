@@ -71,9 +71,8 @@
 
     <LinearLayout
         android:id="@+id/timerDisplay"
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/songImage"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
@@ -95,6 +94,16 @@
             android:text="New Text"
             android:textStyle="bold"
             android:id="@+id/songRemainingDurationLabel"/>
+
     </LinearLayout>
+
+    <SeekBar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/songProgressBar"
+        android:layout_below="@+id/timerDisplay"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
 </RelativeLayout>
