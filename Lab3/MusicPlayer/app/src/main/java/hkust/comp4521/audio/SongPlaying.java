@@ -170,7 +170,7 @@ public class SongPlaying extends Fragment implements View.OnClickListener, SeekB
             case Ready:
                 Log.i(TAG, "Player State Changed to Ready");
                 playerButton.setImageResource(R.drawable.img_btn_play);
-//                songTitleText.setText(player.getSongTitle());
+                     songTitleText.setText(player.getSongTitle());
                 songProgressBar.setProgress(player.progress());
                 complTime.setText(player.completedTime());
                 remTime.setText("-" + player.remainingTime());
