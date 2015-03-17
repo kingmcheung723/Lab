@@ -9,4 +9,4 @@
     <item android:drawable="@drawable/img_btn_forward"
         android:state_focused="false"
         android:state_pressed="false" />
-</selector><!-- From: file:/D:/Work/github/Lab/Lab3/MusicPlayer/app/src/main/res/drawable/btn_forward.xml -->
+</selector><!-- From: file:/Users/tszwingyim/Lab/Lab3/MusicPlayer/app/src/main/res/drawable/btn_forward.xml -->
