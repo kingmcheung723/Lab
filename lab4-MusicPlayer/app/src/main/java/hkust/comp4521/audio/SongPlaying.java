@@ -151,6 +151,8 @@ public class SongPlaying extends Fragment implements OnClickListener, SeekBar.On
     }
     @Override
     public	void	onPause()	{
+        handler.removeCallbacks(songProgressUpdate);
+
         player.deleteObserver(this);
         super.onPause();
     }

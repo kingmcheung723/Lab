@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/tszwingyim/Desktop/MusicPlayer/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/Work/github/Lab/lab4-MusicPlayer/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="Songs">
         <item>Man with the Blues</item>
@@ -10,11 +10,11 @@
         <item>man_with_the_blues</item>
         <item>maroon5_misery</item>
     </string-array>
-    <!-- From: file:/Users/tszwingyim/Desktop/MusicPlayer/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/D:/Work/github/Lab/lab4-MusicPlayer/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/tszwingyim/Desktop/MusicPlayer/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/D:/Work/github/Lab/lab4-MusicPlayer/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="NowPlaying">Now Playing</string>
     <string name="SongList">Song List</string>
