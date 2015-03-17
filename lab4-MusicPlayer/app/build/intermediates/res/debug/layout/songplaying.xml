@@ -18,35 +18,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:src="@drawable/img_btn_prev" />
+            android:src="@drawable/btn_prev" />
 
         <ImageButton
             android:id="@+id/rewind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:src="@drawable/img_btn_rewind" />
+            android:src="@drawable/btn_rewind" />
 
         <ImageButton
             android:id="@+id/play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:src="@drawable/img_btn_play" />
+            android:src="@drawable/btn_play"
+            android:clickable="false" />
 
         <ImageButton
             android:id="@+id/forward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:src="@drawable/img_btn_forward" />
+            android:src="@drawable/btn_forward" />
 
         <ImageButton
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:src="@drawable/img_btn_next" />
+            android:src="@drawable/btn_next" />
 
     </LinearLayout>
 
