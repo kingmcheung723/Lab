@@ -5,8 +5,9 @@
     <item android:drawable="@drawable/img_btn_pause_pressed"
         android:state_focused="false"
         android:state_pressed="true" />
-    <item android:drawable="@drawable/img_btn_pause_pressed" android:state_focused="true" />
+    <item android:drawable="@drawable/img_btn_pause_pressed"
+        android:state_focused="true" />
     <item android:drawable="@drawable/img_btn_pause"
         android:state_focused="false"
         android:state_pressed="false" />
-</selector><!-- From: file:/Users/tszwingyim/Desktop/MusicPlayer/app/src/main/res/drawable/btn_pause.xml -->
+</selector><!-- From: file:/D:/Work/github/Lab/lab4-MusicPlayer/app/src/main/res/drawable/btn_pause.xml -->

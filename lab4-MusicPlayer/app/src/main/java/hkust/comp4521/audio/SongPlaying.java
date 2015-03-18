@@ -1,5 +1,6 @@
 package hkust.comp4521.audio;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -76,8 +77,14 @@ public class SongPlaying extends Fragment implements OnClickListener, SeekBar.On
 
     }
 
-    public	void	setSongTitle(String	title)	{
+    public	void	setSongTitle(String title) {
         songTitleText.setText(title);
+        ObjectAnimator textanim = (ObjectAnimator) ObjectAnimator.ofFloat(songTitleText, "alpha", 0f, 1f);
+        textanim.setDuration(5000);
+        textanim.start();
+        ObjectAnimator imageanim = (ObjectAnimator) ObjectAnimator.ofFloat(songImage, "alpha", 0f, 1f);
+        imageanim.setDuration(5000);
+        imageanim.start();
     }
 
     @Override
@@ -151,6 +158,8 @@ public class SongPlaying extends Fragment implements OnClickListener, SeekBar.On
     }
     @Override
     public	void	onPause()	{
+        handler.removeCallbacks(songProgressUpdate);
+
         player.deleteObserver(this);
         super.onPause();
     }
